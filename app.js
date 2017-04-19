@@ -37,6 +37,13 @@ app.use(bodyParser.json());
 // Use /users for all of our user routes
 app.use('/users', users);
 
+// Passport MW
+app.use(passport.initialize());
+app.use(passport.session());
+
+// TODO what's this?
+require('./config/passport')(passport);
+
 // Index route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
