@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body parser MW
 app.use(bodyParser.json());
 
+// Use /users for all of our user routes
 app.use('/users', users);
 
 // Index route
