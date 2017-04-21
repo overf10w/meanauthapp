@@ -52,7 +52,7 @@ router.post('/authenticate', (req, res, next) => {
           }
         });
       } else {
-        return res.json({ success: false, msg: 'User not found' });
+        return res.json({ success: false, msg: 'Wrong password' });
       }
     });
   });

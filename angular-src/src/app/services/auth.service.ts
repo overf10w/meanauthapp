@@ -18,4 +18,27 @@ export class AuthService {
       .post('http://localhost:3000/users/register', user, { headers: headers })
       .map(res => res.json());
   }
+
+  authenticateUser(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http
+      .post('http://localhost:3000/users/authenticate', user, { headers: headers })
+      .map(res => res.json());    
+  }
+
+  storeUserData(token, user) {
+    // to validate the token, angular-jwt uses 'id_token' key by default
+    localStorage.setItem('id_token', token);
+    // stringify because local storage can only store strings, not objects
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
+  }
+
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+  }
 }
